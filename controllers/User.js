@@ -17,7 +17,7 @@ const registerUser = async (req, res) => {
   const { username, password, firstName, lastName } = req.body;
   const targetUser = await db.User.findOne({ where: { username: username }});
   if (targetUser) {
-    res.status(400).send({ message: 'Username already taken.'})
+    res.status(400).send({ message: 'Register failed, username already taken.'})
   } else {
     const salt = bcryptjs.genSaltSync(12);
     const hashedPassword = bcryptjs.hashSync(password, salt);

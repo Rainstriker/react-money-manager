@@ -1,0 +1,45 @@
+nav.NavBar {
+  position: fixed;
+  width: 100%;
+  height: 54px;
+  background-color: #FFFFFF;
+  border-bottom: 1px solid #D2D2D2;
+  z-index: 1;
+}
+
+.NavBar #username-container {
+  width: '30vh'; 
+  display: 'flex'; 
+  justify-content: 'flex-end';
+}
+
+.NavBar #username {
+  font-size: 14; 
+  font-family: 'Roboto'; 
+  padding-right: 15;
+}
+
+a.NavBar {
+  color: 'black';
+  font-size: 14; 
+  font-family: 'Roboto'; 
+  margin: 'auto';
+}
+
+.NavBar #nav-container {
+  padding: 15px 20px 0px 20px;
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  max-width: 975px;
+}
+
+.NavBar #logo {
+  font-size: 24px;
+  font-family: 'Rozha One', serif;
+}
