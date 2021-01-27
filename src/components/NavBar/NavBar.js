@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useRef } from 'react';
 import LocalStorageService from '../../services/localStorageService'
 import jwtDecode from 'jwt-decode';
 import './NavBar.css'
@@ -10,12 +10,13 @@ const NavBar = props => {
   const [username, setUsername] = useState('');
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
-  const changeTool = path => {
-    console.log('running')
-    if (path === '/manage') {
+  // const [path, setPath] = useState(window.location.pathname);
+  const changeTool = role => {
+    if (role === 'user') {
       return (
         <div className='NavBar' id='username-container'>
-          <p className='NavBar' id='username'>{props.name}</p>
+          <p className='NavBar' id='username'>{firstName}</p>
+          <p className='NavBar' id='username'>{lastName}</p>
           <Setting 
             username={username} 
             firstName={firstName} 
@@ -24,7 +25,7 @@ const NavBar = props => {
           />
         </div>
       );
-    } else if (path === '/') {
+    } else if (role === 'guest') {
       return (
         <>
           <ModalForm 
@@ -37,9 +38,6 @@ const NavBar = props => {
     }
   }
 
-  const token = LocalStorageService.getToken()
-  const path = window.location.pathname;
-
   useEffect(() => {
     const token = LocalStorageService.getToken();
     if(token) {
@@ -48,7 +46,7 @@ const NavBar = props => {
       setFirstName(user.firstName);
       setLastName(user.lastName);
     }
-  }, [token]);
+  }, []);
 
 
 
@@ -57,7 +55,7 @@ const NavBar = props => {
       <nav>
         <div className='NavBar' id='nav-container'>
           <h1 className='NavBar' id='logo'>Money Manager</h1>
-          {changeTool(path)}
+          {changeTool(props.role)}
         </div>
       </nav>
     </>
